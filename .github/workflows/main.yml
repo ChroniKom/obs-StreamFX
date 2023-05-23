@@ -29,7 +29,7 @@ jobs:
       matrix:
         runner: [ "windows-2022" ]
         name: [ "Windows" ]
-        compiler: [ "MSVC", "Clang" ]
+        compiler: [ "MSVC" ]
         qt: [ 6 ]
         include:
           - compiler: "MSVC"
@@ -175,7 +175,7 @@ jobs:
     - name: "Release: Create"
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "*.dll"
+        artifacts: "./build/ci/RelWithDebInfo/StreamFX.dll,./build/ci/RelWithDebInfo/StreamFX.pdb"
         body: "Automatic Release"
         commit: root
         tag: v1.2.322
