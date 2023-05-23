@@ -175,7 +175,7 @@ jobs:
     - name: "Output: Directory"
       shell: bash
       run: |
-        tree /a /f
+        ls -alR
     - name: "Release: Create"
       uses: ncipollo/release-action@v1
       with:
