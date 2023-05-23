@@ -42,6 +42,8 @@ jobs:
             CMAKE_GENERATOR_TOOLSET: "ClangCL"
             CMAKE_GENERATOR_PLATFORM: "x64"
     runs-on: "${{ matrix.runner }}"
+    permissions:
+      contents: write
     name: "${{ matrix.name }} (${{ matrix.compiler }})"
     env:
       CMAKE_GENERATOR: "${{ matrix.CMAKE_GENERATOR }}"
@@ -170,10 +172,14 @@ jobs:
         CMAKE_BUILD_TYPE: "RelWithDebInfo"
       run: |
         cmake --build "build/ci" --config ${{ env.CMAKE_BUILD_TYPE }} --target StreamFX
+    - name: "Output: Directory"
+      shell: bash
+      run: |
+        tree /a /f
     - name: "Release: Create"
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "D:\\a\\obs-StreamFX\\obs-StreamFX\\build\\ci\\RelWithDebInfo\\StreamFX.dll"
+        artifacts: "*.dll"
         body: "Automatic Release"
         commit: root
         tag: v1.2.322
